@@ -1,66 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#il-progetto">Il progetto: Servizi statali</a></li>
+    <li><a href="#funzionalità">Funzionalità</a></li>
+    <li><a href="#struttura-del-codice">Struttura del codice</a></li>
+    <li><a href="#link-al-sito">Link</a></li>
+    <li><a href="#utilizzo">Utilizzo</a></li>
+    <li><a href="#contribuire">Contribuire</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ol>
+</details>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<!-- IL PROGETTO -->
+## Il progetto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Questo progetto nasce con l'obiettivo di semplificare la vita ai cittadini italiani, rendendo più accessibili
+e comprensibili i servizi e i bonus statali. Per dimostrare il valore del proprio contributo, Servizi statali ha deciso di realizzare una 
+RestFul API che visualizzi il tempo risparmiato grazie all'uso dei suoi servizi.<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Per lo sviluppo dell'API si è scelto Laravel, che offre un’architettura solida MVC, protezione contro SQL Injection e una
+gestione avanzata degli errori. Il database utilizza MySQL, con un sistema di migrazioni per una gestione ordinata dei dati.<br>
 
-## Learning Laravel
+Questa API permette di:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<ul>
+    <li>Gestire le tipologie di prestazioni offerte, includendo il nome e il tempo in minuti risparmiato;</li>
+    <li>Registrare le prestazioni erogate, con la data di vendita, la tipologia di prestazione e la quantità erogata;</li>
+    <li>
+        Calcolare il tempo totale risparmiato dai cittadini, con la possibilità di filtrare per range temporale 
+        e tipologia di prestazione.
+    </li>
+</ul><br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<br>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+<!-- FUNZIONALITà -->
+## Funzionalità
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Metodo  | Endpoint                                                   | Descrizione                                              |
+|---------|------------------------------------------------------------|----------------------------------------------------------|
+| GET     | `/api/prestazioni/offerte`                                 | Ottiene tutte le prestazioni offerte                     |
+| POST    | `/api/prestazioni/offerte`                                 | Crea una nuova prestazione offerta                       |
+| PUT     | `/api/prestazioni/offerte/{id}`                            | Modifica un campo di una prestazione offerta             |
+| PATCH   | `/api/prestazioni/offerte/{id}`                            | Modifica una prestazione offerta                         |
+| DELETE  | `/api/prestazioni/offerte/{id}`                            | Cancella una prestazione offerta                         |
+| GET     | `/api/prestazioni/erogate`                                 | Ottiene tutte le prestazioni erogate                     |
+| POST    | `/api/prestazioni/erogate`                                 | Registra una prestazione erogata                         |
+| PUT     | `/api/prestazioni/erogate/{id}`                            |Modifica un campo di una prestazione erogata              |
+| PATCH   | `/api/prestazioni/erogate/{id}`                            | Modifica una prestazione erogata                         |
+| DELETE  | `/api/prestazioni/erogate/{id}`                            | Cancella una prestazione erogata                         | 
+| GET     | `/api/tempo-risparmiato`                                   | Ottiene il totale del tempo risparmiato                  |
+| GET     | `/api/tempo-risparmiato?start=2025-01-01&end=2025-03-01`   | Filtra il tempo risparmiato per periodo                  |
+| GET     | `/api/tempo-risparmiato?tipo_prestazione=1`                | Filtra il tempo risparmiato per tipologia di prestazione |
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+<!-- Struttura -->
+## Struttura del progetto
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+L’applicazione è organizzata seguendo lo schema Laravel 12. <br>
+Qui di seguito sono illustrati i file principali di questa applicazione.<br>
+Per maggiori informazioni relative a Laravel consultare il [sito ufficiale](https://laravel.com/).
 
-## Code of Conduct
+```text
+📁 app/ 
+ ├── 📁 Http
+ │    └── 📁Controllers
+ │         ├── PrestazioneOffertaController.php (Controller di prestazione offerta)
+ │         ├── PrestazioneErogataController.php (Controller di prestazione erogata)
+ │         └── CalcoliController.php (Controller dei calcoli sul tempo risparmiato)
+ │   
+ ├── 📁 Models
+ │    ├── PrestazioneOfferta.php (Modello di prestazione offerta)
+ │    └── PrestazioneErogata.php (Modello di prestazione erogata)
+ │
+ ├── 📁 database
+ │    ├── 📁factories
+ |    |    ├── PrestazioneOffertaFactory.php (Factory dati fittizi per prestazione offerta)
+ │    |    └── PrestazioneErogataFactory.php (Factory dati fittizi per prestazione erogata)
+ │    ├── 📁migrations
+ |    |    └── 2025_03_17_083517_create_prestazioni_tables.php (Schema delle tabelle delle prestazioni)   
+ │    └── 📁seeders
+ |         ├── DatabaseSeeder.php (Seeder per popolare il database)
+ │         ├── PrestazioneOffertaSeeder.php (Seeder per popolare la tabella prestazioni offerte)
+ │         └── PrestazioneErogataSeeder.php (Seeder per popolare la tabella prestazioni erogate)
+ │   
+ └── 📁 routes 
+      └── api.php (Definizione delle rotte API)
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+<!-- UTILIZZO -->
+## Utilizzo
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. **Clona il repository:**
+    ```bash
+    git clone https://github.com/ElisabettaNale/servizi_statali_mysql_php_laravel.git
+    cd servizi_statali_mysql_php_laravel
+    ```
+2. **Installare le dipendenze:**
+    ```bash
+    composer install
+    ```
+3. **Configura il file .env (DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD)**
+    ```bash
+    cp .env.example .env
+    ```
+4. **Crea il database**
+    ```bash
+    php artisan migrate --seed
+    ```
+5. **Avvia il server**
+    ```bash
+    php artisan serve
+    ```
+    
 
-## License
+<!-- CONTRIBUIRE -->
+## Contribuire
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Se desideri contribuire al progetto, segui questi passaggi: 
+
+1. **Forka il repository su GitHub.**
+
+2. **Crea un nuovo branch per le tue modifiche.**
+
+3. **Invia una request per l'integrazione delle tue modifiche nel repository principale.**
+
+
+<!-- CONTATTI -->
+## Contatti
+
+Per qualsiasi domanda o suggerimenti, puoi contattarmi tramite il mio **profilo LinkedIn:** [Elisabetta Nale](https://www.linkedin.com/in/elisabetta-nale/)
+e puoi anche dare un'occhiata al mio **sito web professionale:** [Home](https://elisabettanale.github.io/index.html).
