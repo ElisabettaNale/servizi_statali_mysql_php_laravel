@@ -50,12 +50,12 @@ Questa API permette di:
 | DELETE  | `/api/prestazioni/offerte/{id}`                            | Cancella una prestazione offerta                         |
 | GET     | `/api/prestazioni/erogate`                                 | Ottiene tutte le prestazioni erogate                     |
 | POST    | `/api/prestazioni/erogate`                                 | Registra una prestazione erogata                         |
-| PUT     | `/api/prestazioni/erogate/{id}`                            |Modifica un campo di una prestazione erogata              |
+| PUT     | `/api/prestazioni/erogate/{id}`                            | Modifica un campo di una prestazione erogata              |
 | PATCH   | `/api/prestazioni/erogate/{id}`                            | Modifica una prestazione erogata                         |
 | DELETE  | `/api/prestazioni/erogate/{id}`                            | Cancella una prestazione erogata                         | 
 | GET     | `/api/tempo-risparmiato`                                   | Ottiene il totale del tempo risparmiato                  |
 | GET     | `/api/tempo-risparmiato?start=2025-01-01&end=2025-03-01`   | Filtra il tempo risparmiato per periodo                  |
-| GET     | `/api/tempo-risparmiato?tipo_prestazione=1`                | Filtra il tempo risparmiato per tipologia di prestazione |
+| GET     | `/api/tempo-risparmiato?tipologia_id    =1`                | Filtra il tempo risparmiato per tipologia di prestazione |
 
 
 
@@ -102,7 +102,7 @@ Per maggiori informazioni relative a Laravel consultare il [sito ufficiale](http
     git clone https://github.com/ElisabettaNale/servizi_statali_mysql_php_laravel.git
     cd servizi_statali_mysql_php_laravel
     ```
-2. **Installare le dipendenze:**
+2. **Installa le dipendenze:**
     ```bash
     composer install
     ```
